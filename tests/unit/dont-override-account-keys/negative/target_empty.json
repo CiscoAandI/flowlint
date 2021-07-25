@@ -1,0 +1,11 @@
+{
+    "actions": [
+        {
+            "properties": {
+                "runtime_user": {
+                    "target_default": ""
+                }
+            }
+        }
+    ]
+}

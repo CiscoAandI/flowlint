@@ -1,0 +1,13 @@
+{
+    "workflow": {
+        "properties": {
+            "atomic": {
+                "is_atomic": true
+            },
+            "target": {
+                "no_target": false,
+                "specify_on_workflow_start": false
+            }
+        }
+    }
+}

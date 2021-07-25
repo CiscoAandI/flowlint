@@ -1,0 +1,16 @@
+{
+    "workflow": {
+        "variables": [
+            {
+                "properties": {
+                    "description": "1234567890"
+                }
+            },
+            {
+                "properties": {
+                    "description": "123456789"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "flowlint",
+  "version": "1.0.0",
+  "description": "SecureX Workflow Linter",
+  "main": "index.js",
+  "repository": "https://github.com/CiscoAandI/flowlint.git",
+  "author": "Ava Thorn <avthorn@cisco.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "jest": "^27.0.6"
+  },
+  "dependencies": {
+    "@stoplight/spectral": "6.0.0-alpha3",
+    "jsonschema": "^1.4.0",
+    "node": "14.16.1"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.?(m)js?(x)",
+      "**/?(*.)(spec|test).?(m)js?(x)"
+    ],
+    "transform": {
+      "^.+\\.m?js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "node",
+      "mjs"
+    ]
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
+      }
+    }
+  }
+}

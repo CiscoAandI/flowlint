@@ -1,0 +1,37 @@
+formats: [atomic_action]
+functions:
+  - or
+rules:
+  target-atomic-exists:
+    description: Not having a target is ok for an atomic action if it doesn't need to communicate with anything
+    given: $.workflow.properties.target
+    severity: hint
+    then:
+      field: no_target
+      function: falsy
+  target-specify-on-start:
+    description: All atomic actions should have their target set to "Specify Target On Workflow Start". This allows the atomic to be more portable since the workflow using it can specify the target.
+    given: $.workflow.properties.target
+    severity: error
+    then:
+      function: or
+      functionOptions:
+        properties:
+          - no_target
+          - specify_on_workflow_start
+  target-account-keys:
+    description: All atomic actions should have their account key set to "Use Target's Default Account Keys". This allows the atomic to inherit whatever account key is associated with the target provided by the parent workflow.
+    given: $.workflow.properties
+    severity: error
+    then:
+      - field: runtime_user
+        function: defined
+      - field: runtime_user.target_default
+        function: truthy
+  use-workflow-target:
+    description: All activities in an atomic action that use a target should be set to "Use Workflow Target"
+    given: $..actions,blocks[*]
+    severity: warn
+    then:
+      field: properties.target.use_workflow_target
+      function: truthy

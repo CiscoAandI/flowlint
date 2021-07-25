@@ -1,0 +1,14 @@
+{
+    "actions": [
+        {
+            "properties": {
+                "skip_execution": true
+            }
+        },
+        {
+            "properties": {
+                "skip_execution": false
+            }
+        }
+    ]
+}

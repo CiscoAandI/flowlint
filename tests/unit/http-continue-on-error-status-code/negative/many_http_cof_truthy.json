@@ -1,0 +1,16 @@
+{
+    "actions": [
+        {
+            "type": "web-service.http_request",
+            "properties": {
+                "continue_on_error_status_code": false
+            }
+        },
+        {
+            "type": "web-service.http_request",
+            "properties": {
+                "continue_on_error_status_code": true
+            }
+        }
+    ]
+}

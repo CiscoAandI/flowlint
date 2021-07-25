@@ -1,0 +1,211 @@
+extends:
+  - atomic_action_ruleset.yaml
+  - workflow_ruleset.yaml
+functions:
+  - atomics_exist
+rules:
+  required-categories:
+    description: Every workflow needs at least 1 category.
+    given: $
+    severity: error
+    then:
+      - field: categories
+        function: defined
+      - field: categories
+        function: length
+        functionOptions:
+          min: 1
+  required-workflow-key:
+    description: Every workflow needs a high level workflow key.
+    given: $
+    severity: error
+    then:
+      field: workflow
+      function: defined
+  required-workflow-properties:
+    description: Every workflow needs workflow properties..
+    given: $.workflow
+    severity: error
+    then:
+      field: properties
+      function: defined
+  required-target:
+    description: Every workflow needs a target
+    given: $.workflow.properties
+    severity: error
+    then:
+      field: target
+      function: defined
+  required-description:
+    description: Every workflow needs a description of length at least 10.
+    given: $.workflow.properties
+    severity: error
+    then:
+      - field: description
+        function: defined
+      - field: description
+        function: length
+        functionOptions:
+          min: 10
+  cleanup-workflow:
+    description: If you check "Clean up after successful execution", your workflow or atomic action's instances will be deleted if they're successful. This means you won't be able to view them for debugging purposes.
+    given: $.workflow.properties
+    severity: hint
+    then:
+      field: delete_workflow_instance
+      function: falsy
+  no-global-variables:
+    description: Global variables should not be used in workflows or atomic actions meant to be shared. Instead, use a "Set Variables" activity to copy global variables to local variables within the workflow. Before exporting, simply remove the global variables so the other user can select their own.
+    given: $
+    severity: error
+    then:
+      field: variables
+      function: length
+      functionOptions:
+        max: 0
+  no-table-types:
+    description: We do not recommend using tables to pass data between objects as they're inefficient and don't always scale well. It's better to exchange JSON instead
+    given: $
+    severity: error
+    then:
+      field: table_types
+      function: length
+      functionOptions:
+        max: 0
+  secure-strings-have-default-values:
+    description: If a Secure String variable has a value when exported, it will prompt the user for its value during import. If you want to avoid this, clear the Secure String's value before exporting the workflow.
+    given: $.workflow.variables[?(@.properties.type == "datatype.secure_string")]
+    severity: warn
+    then:
+      field: properties.value
+      function: length
+      functionOptions:
+        min: 1
+  required-variable-description:
+    description: Every workflow variable needs a description of length at least 10.
+    given: $.workflow.variables[*]
+    severity: warn
+    then:
+      - field: properties.description
+        function: defined
+      - field: properties.description
+        function: length
+        functionOptions:
+          min: 10
+  no-hardcoded-targets:
+    description: Workflows should not have any hard-coded targets
+    given: $
+    severity: error
+    then:
+      field: targets
+      function: length
+      functionOptions:
+        max: 0
+  no-hardcoded-account-keys:
+    description: No account keys should be hardcoded in the workflow.
+    given: $
+    severity: error
+    then:
+      field: runtime_users
+      function: length
+      functionOptions:
+        max: 0
+  no-manual-targets-in-target-group:
+    description: In the target group configuration, you probably added a specific target manually. We don't recommend doing this unless you have a specific use case and suggest you consider using target group criteria instead.
+    given: $.target_groups[*].targets[*]
+    severity: warn
+    then:
+      field: selected_target_ids
+      function: length
+      functionOptions:
+        max: 0
+  non-standard-target-types:
+    description: By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow.
+    given: $.target_groups.target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH.targets[*]
+    severity: warn
+    then:
+      field: data_target_type
+      function: enumeration
+      functionOptions:
+        values:
+          - web-service.endpoint
+          - email.smtp_endpoint
+  no-custom-calenders:
+    description: By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow.
+    given: $.calenders[*]
+    severity: warn
+    then:
+      field: unique_name
+      function: enumeration
+      functionOptions:
+        values:
+          - calendar_recurring_1BMfMVuAObCmHIsuW7x3IDSg7Ex
+          - calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ
+          - calendar_recurring_1BMfMW5GeLXecZJo0Q2KrjwQQIv
+          - calendar_recurring_1BMfMeHT9BLcMorjZ6d827zXeaV
+          - calendar_recurring_1BMfMcNhIKsalUwsjCDmSfUnmXW
+          - calendar_recurring_1BMfMfZOtVKaTB6BaLDrNQK52Fc
+          - calendar_recurring_1BMfMd3fofpISGMRps4BWyiLLLF
+          - calendar_recurring_1BMfMhDJAkJOyFHVPdAlXhGhG4r
+          - calendar_recurring_1BMfMqhskK5gwxWWa4onJC9Zr85
+          - calendar_recurring_1BMfMjHOpvnqfcYuwbNrCaNw9VG
+          - calendar_recurring_1BMfMkExf4yIRuj23K0kmAAPc6T
+          - calendar_recurring_1BMfMpqnrsC6VJEyYW4URsw7LBb
+          - calendar_recurring_1BMfMm9xzHRuS6K7B48zgAz9JZX
+          - calendar_recurring_1BMfMth9lq7gy3wE8OW10vuzhPw
+          - calendar_recurring_1BMfMr25ZvcGOTMtbZwzH46TxaH
+          - calendar_recurring_1BMfMwZ4tmMYLJBxY4PFZf0e377
+          - calendar_recurring_1BMfMviA3g4f1iDN74e6ytY2iuI
+          - calendar_datelist_1BMfMrFF1Br99a6ow9x1ZyhMnK4
+          - calendar_datelist_1BMfMrejiPkeY95fLvoFCuKaPLq
+          - calendar_group_1BMfN3vifXosz1cwBFXN6N7yQge
+          - calendar_group_1BMfN6Cjp6x5yy0NdCh9PJC9KGo
+  no-subworkflows:
+    description: We do not recommend using subworkflows as they complicate the import/export process. You may want to consider using some atomic actions instead depending on what your subworkflow does.
+    given: $..actions,blocks[*]
+    severity: warn
+    then:
+      field: type
+      function: pattern
+      functionOptions:
+        notMatch: ^workflow\.sub_workflow$
+  no-activities-skipped:
+    description: Skipping execution for an activity means the activity will not run at all.
+    given: $..actions,blocks[*]
+    severity: info
+    then:
+      field: properties.skip_execution
+      function: falsy
+  http-continue-on-failure:
+    description: In most cases, you probably want "Continue on HTTP error status code" instead. If you're using this option intentionally, make sure you're using a Condition Block to handle failures.
+    given: $..actions,blocks[?(@.type == "web-service.http_request")]
+    severity: info
+    then:
+      field: properties.continue_on_failure
+      function: falsy
+  http-continue-on-error-status-code:
+    description: You should check this and use a Condition Block to handle HTTP error codes.
+    given: $..actions,blocks[?(@.type == "web-service.http_request")]
+    severity: warn
+    then:
+      field: properties.continue_on_error_status_code
+      function: falsy
+  jsonpath-continue-on-failure:
+    description: If the JSON path query you look for isn't found, the activity will fail and your workflow will fail with it. If you want to avoid this, you can check continue on failure and use a Condition Block to check if the path query was successful.
+    given: $..actions,blocks[?(@.type == "corejava.jsonpathquery")]
+    severity: warn
+    then:
+      field: properties.continue_on_failure
+      function: truthy
+  dont-override-account-keys:
+    description: Most activities should have their account key set to "Use Target's Default Account Keys." It's uncommon that a target's account keys should be overriden.
+    given: $..actions,blocks[*]
+    severity: warn
+    then:
+      field: properties.runtime_user.target_default
+      function: truthy
+  all-actions-exist:
+    given: $
+    severity: error
+    then:
+      function: atomics_exist

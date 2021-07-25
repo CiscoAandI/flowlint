@@ -1,0 +1,91 @@
+formats: [workflow]
+rules:
+  use-target-group:
+    description: Workflows that are meant to be shared and require targets should use a Target Group.
+    given: $.workflow.properties.target
+    severity: error
+    then: 
+      - &no-target-falsy
+        field: no_target
+        function: falsy
+      - &execute-on-target-group-truthy
+        field: execute_on_target_group
+        function: truthy
+      - &target-group-exists
+        field: target_group
+        function: truthy
+  use-default-target-group:
+    description: We recommend using the "Default TargetGroup" since every SecureX orchestration tenant should have it by default. If you use your own target group, it will be created during workflow import
+    given: $.workflow.properties.target
+    severity: warn
+    then:
+      - *no-target-falsy
+      - *execute-on-target-group-truthy
+      - *target-group-exists
+      - field: target_group.target_group_id
+        function: defined
+      - field: target_group.target_group_id
+        function: pattern
+        functionOptions:
+          # This ID is the default target group and will be the same always for all tenants.
+          match: ^target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH$
+  do-not-run-on-all-targets:
+    description: We do not recommend checking "All Targets in this Group" as it limits your ability to define target selection criteria.
+    given: $.workflow.properties.target
+    severity: warn
+    then:
+      - *no-target-falsy
+      - *execute-on-target-group-truthy
+      - *target-group-exists
+      - field: target_group.run_on_all_targets
+        function: falsy
+  choose-matching-criteria:
+    description: This should be "Choose first with matching critera" unless you want the workflow to execute once for each matching target in the group
+    given: $.workflow.properties.target
+    severity: warn
+    then:
+      - *no-target-falsy
+      - *execute-on-target-group-truthy
+      - *target-group-exists
+      - field: target_group.use_criteria
+        function: defined
+      - field: target_group.use_criteria.choose_target_using_algorithm
+        function: defined
+      - field: target_group.use_criteria.choose_target_using_algorithm
+        function: pattern
+        functionOptions:
+          match: ^choose_first_with_matching_criteria$
+  target-selection-criteria:
+    description: This is typically "Equals Case-Insensitive" but other operators are fine if you're doing something specific.
+    given: $.workflow.properties.target
+    severity: warn
+    then:
+      - *no-target-falsy
+      - *execute-on-target-group-truthy
+      - *target-group-exists
+      - field: target_group.use_criteria
+        function: defined
+      - field: target_group.use_criteria.conditions
+        function: defined
+      - field: target_group.use_criteria.conditions
+        function: length
+        functionOptions:
+          min: 1
+      - field: target_group.use_criteria.conditions.0.operator
+        function: pattern
+        functionOptions:
+          match: ^eqi$
+  override-target-group-criteria:
+    description: Should be "Use Workflow Target Group" or "Override Workflow Target Group Criteria"
+    given: $..actions,blocks[*]
+    severity: warn
+    then:
+      - field: properties.target.override_workflow_target_group_criteria
+        function: truthy
+      - field: properties.target.use_workflow_target_group
+        function: truthy
+      # function: xor
+      # functionOptions:
+      #   - override_workflow_target_group_criteria
+      #   - use_workflow_target_group
+  

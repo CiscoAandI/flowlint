@@ -1,0 +1,15 @@
+{
+    "workflow": {
+        "properties": {
+            "target": {
+                "execute_on_target_group": true,
+                "no_target": false,
+                "target_group": {
+                    "use_criteria": {
+                        "choose_target_using_algorithm": "choose_first_with_matching_criteria"
+                    }
+                }
+            }
+        }
+    }
+}

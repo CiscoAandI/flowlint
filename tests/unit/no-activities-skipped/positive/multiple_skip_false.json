@@ -1,0 +1,19 @@
+{
+    "actions": [
+        {
+            "properties": {
+                "skip_execution": false
+            }
+        },
+        {
+            "properties": {
+                "skip_execution": false
+            }
+        },
+        {
+            "properties": {
+                "skip_execution": false
+            }
+        }
+    ]
+}

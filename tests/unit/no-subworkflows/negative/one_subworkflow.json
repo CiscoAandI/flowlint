@@ -1,0 +1,7 @@
+{
+    "actions": [
+        {
+            "type": "workflow.sub_workflow"
+        }
+    ]
+}

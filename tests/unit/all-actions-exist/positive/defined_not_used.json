@@ -1,0 +1,15 @@
+{
+    "atomic_workflows": [
+        "foo"
+    ],
+    "actions": [
+        {
+            "type": "workflow.atomic_workflow",
+            "name": "foo"
+        },
+        {
+            "type": "workflow.atomic_workflow",
+            "name": "foo2"
+        }
+    ]
+}

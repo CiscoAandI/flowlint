@@ -1,0 +1,18 @@
+{
+    "workflow": {
+        "properties": {
+            "target": {
+                "no_target": false,
+                "target_group": {
+                    "use_criteria": {
+                        "conditions": [
+                            {
+                                "operator": "eqi"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

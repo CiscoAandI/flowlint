@@ -1,0 +1,9 @@
+{
+    "workflow": {
+        "properties": {
+            "atomic": {
+                "is_atomic": false
+            }
+        }
+    }
+}

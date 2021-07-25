@@ -1,0 +1,12 @@
+{
+    "actions": [
+        {
+            "properties": {
+                "target": {
+                    "override_workflow_target_group_criteria": false,
+                    "use_workflow_target_group": true
+                }
+            }
+        }
+    ]
+}

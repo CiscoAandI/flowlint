@@ -1,0 +1,18 @@
+{
+    "workflow": {
+        "variables": [
+            {
+                "properties": {
+                    "type": "datatype.secure_string",
+                    "value": ""
+                }
+            },
+            {
+                "properties": {
+                    "type": "datatype.secure_string",
+                    "value": "foo"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "targets": {
+        "fooId": {
+            "unique_name": "foo"
+        }
+    }
+}

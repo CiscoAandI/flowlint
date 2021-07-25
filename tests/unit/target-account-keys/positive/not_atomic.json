@@ -1,0 +1,9 @@
+{
+    "workflow": {
+        "properties": {
+            "runtime_user": {
+                "target_default": true
+            }
+        }
+    }
+}

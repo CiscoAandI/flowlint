@@ -1,0 +1,10 @@
+{
+    "actions": [
+        {
+            "type": "other",
+            "properties": {
+                "continue_on_failure": true
+            }
+        }
+    ]
+}

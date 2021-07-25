@@ -1,0 +1,16 @@
+{
+    "actions": [
+        {
+            "type": "web-service.http_request",
+            "properties": {
+                "continue_on_failure": false
+            }
+        },
+        {
+            "type": "foo",
+            "properties": {
+                "continue_on_failure": true
+            }
+        }
+    ]
+}

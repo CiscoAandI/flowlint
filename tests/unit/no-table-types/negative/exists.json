@@ -1,0 +1,7 @@
+{
+    "table_types": {
+        "fooId": {
+            "unique_name": "foo"
+        }
+    }
+}

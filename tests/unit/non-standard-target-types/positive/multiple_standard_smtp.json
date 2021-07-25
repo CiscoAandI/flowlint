@@ -1,0 +1,18 @@
+{
+    "target_groups": {
+        "foo": {
+            "targets": [
+                {
+                    "data_target_type": "foo"
+                }
+            ]
+        },
+        "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH": {
+            "targets": [
+                {
+                    "data_target_type": "email.smtp_endpoint"
+                }
+            ]
+        }
+    }
+}

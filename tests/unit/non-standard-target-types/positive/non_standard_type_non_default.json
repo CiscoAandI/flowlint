@@ -1,0 +1,11 @@
+{
+    "target_groups": {
+        "foo": {
+            "targets": [
+                {
+                    "data_target_type": "foo"
+                }
+            ]
+        }
+    }
+}

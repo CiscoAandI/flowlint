@@ -1,0 +1,12 @@
+{
+    "workflow": {
+        "variables": [
+            {
+                "properties": {
+                    "type": "datatype.string",
+                    "value": "foo"
+                }
+            }
+        ]
+    }
+}

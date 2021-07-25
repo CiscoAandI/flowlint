@@ -1,0 +1,7 @@
+{
+    "workflow": {
+        "properties": {
+            "delete_workflow_instance": true
+        }
+    }
+}

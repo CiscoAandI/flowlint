@@ -1,0 +1,10 @@
+{
+    "calenders": [
+        {
+            "unique_name": "foo"
+        },
+        {
+            "unique_name": "foo2"
+        }
+    ]
+}

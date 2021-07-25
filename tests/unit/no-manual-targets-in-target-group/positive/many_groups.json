@@ -1,0 +1,18 @@
+{
+    "target_groups": {
+        "fooGroupId": {
+            "targets": [
+                {
+                    "selected_target_ids": []
+                }
+            ]
+        },
+        "fooGroupId2": {
+            "targets": [
+                {
+                    "selected_target_ids": []
+                }
+            ]
+        }
+    }
+}

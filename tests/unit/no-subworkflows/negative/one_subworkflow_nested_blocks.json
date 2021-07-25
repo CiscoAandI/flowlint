@@ -1,0 +1,12 @@
+{
+    "actions": [
+        {
+            "type": "foo",
+            "blocks": [
+                {
+                    "type": "workflow.sub_workflow"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "workflow": {
+        "properties": {
+            "target": {
+                "execute_on_target_group": true,
+                "target_group": {
+                    "target_group_id": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH"
+                }
+            }
+        }
+    }
+}

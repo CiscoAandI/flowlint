@@ -1,0 +1,13 @@
+{
+    "actions": [
+        {
+            "type": "foofoo"
+        },
+        {
+            "type": "okayokay"
+        },
+        {
+            "type": "something.else"
+        }
+    ]
+}

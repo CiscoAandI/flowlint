@@ -1,0 +1,22 @@
+{
+    "atomic_workflows": [
+        "nested",
+        "foo"
+    ],
+    "actions": [
+        {
+            "type": "workflow.atomic_workflow",
+            "name": "foo"
+        },
+        {
+            "type": "other",
+            "name": "foo2",
+            "blocks": [
+                {
+                    "type": "workflow.atomic_workflow",
+                    "name": "nested"
+                }
+            ]
+        }
+    ]
+}

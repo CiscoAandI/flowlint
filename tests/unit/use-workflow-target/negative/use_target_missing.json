@@ -1,0 +1,16 @@
+{
+    "workflow": {
+        "properties": {
+            "atomic": {
+                "is_atomic": true
+            }
+        }
+    },
+    "actions": [
+        {
+            "properties": {
+                "target": {}
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "actions": [
+        {
+            "type": "other",
+            "properties": {
+                "continue_on_error_status_code": true
+            }
+        }
+    ]
+}

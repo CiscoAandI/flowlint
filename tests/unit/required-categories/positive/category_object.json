@@ -1,0 +1,13 @@
+{
+    "categories": {
+        "category_01PWYTHUWB34C3vaqngyzARFMOM9Tydt2VN": {
+            "unique_name": "category_01PWYTHUWB34C3vaqngyzARFMOM9Tydt2VN",
+            "name": "Utility",
+            "title": "Utility",
+            "type": "basic.category",
+            "base_type": "category",
+            "category_type": "custom",
+            "object_type": "category"
+        }
+    }
+}

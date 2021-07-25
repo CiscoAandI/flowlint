@@ -1,0 +1,11 @@
+{
+    "actions": [
+        {
+            "properties": {
+                "target": {
+                    "use_workflow_target": true
+                }
+            }
+        }
+    ]
+}

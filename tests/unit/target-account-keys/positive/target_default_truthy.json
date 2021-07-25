@@ -1,0 +1,12 @@
+{
+    "workflow": {
+        "properties": {
+            "atomic": {
+                "is_atomic": true
+            },
+            "runtime_user": {
+                "target_default": true
+            }
+        }
+    }
+}

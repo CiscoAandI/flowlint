@@ -1,0 +1,7 @@
+{
+    "runtime_users": {
+        "fooId": {
+            "unique_name": "foo"
+        }
+    }
+}

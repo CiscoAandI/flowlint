@@ -1,0 +1,12 @@
+{
+    "workflow": {
+        "properties": {
+            "target": {
+                "no_target": false,
+                "target_group": {
+                    "run_on_all_targets": false
+                }
+            }
+        }
+    }
+}
