@@ -36,6 +36,4 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - env:
-          NODE_OPTIONS: --experimental-vm-modules
-        run: jest
+      - run: node --experimental-vm-modules ./node_modules/jest/bin/jest.js
