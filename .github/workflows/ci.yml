@@ -36,4 +36,4 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - run: yarn list && yarn test
+      - run: yarn && yarn test
