@@ -15,12 +15,12 @@ jobs:
         id: save-deps
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
       - name: Install Dependencies
         if: steps.save-deps.outputs.cache-hit != 'true'
         uses: CultureHQ/actions-yarn@master
         with:
-          args: install
+          args: --ignore-engines install
   test:
     needs: setup
     runs-on: ubuntu-latest
