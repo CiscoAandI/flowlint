@@ -37,7 +37,7 @@ jobs:
         id: save-deps
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
       - env:
           NODE_OPTIONS: --experimental-vm-modules
-        run: yarn install && jest
+        run: jest
