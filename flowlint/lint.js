@@ -42,13 +42,13 @@ exports.lint = function(args) {
       files.forEach(filename => {
         // files is an array of filenames.
         const workflow = JSON.parse(fs.readFileSync(filename));
-        results.push(spectral.run(workflow)).then((single_results) => {
+        results.push(spectral.run(workflow).then((single_results) => {
           single_results = single_results.map(i => ({...i, source: filename}));
           if(single_results.length > 0){
             process.exitCode = severeEnoughToFail(single_results, failSeverity) ? 1 : 0;
           }
           return single_results;
-        });
+        }));
       })
       return Promise.all(results);
     });
