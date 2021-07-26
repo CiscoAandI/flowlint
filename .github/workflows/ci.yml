@@ -38,4 +38,4 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - run: node --experimental-vm-modules node_modules/.bin/jest -i
+      - run: node --experimental-vm-modules node_modules/.bin/jest -i tests/unit
