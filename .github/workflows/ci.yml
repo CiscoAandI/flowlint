@@ -9,7 +9,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.3.0
         with:
-          node-version: 14.15.0
+          node-version: 16.5.0
       - uses: actions/checkout@master
       - uses: actions/cache@v2.1.6
         id: save-deps
@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.3.0
         with:
-          node-version: 14.15.0
+          node-version: 16.5.0
       - uses: actions/checkout@master
       - uses: actions/cache@v2.1.6
         id: save-deps
