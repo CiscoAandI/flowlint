@@ -31,11 +31,11 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.3.0
         with:
-          node-version: 15.14.0
+          node-version: 14.15.0
       - uses: actions/checkout@master
       - uses: actions/cache@v2.1.6
         id: save-deps
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - run: make test
+      - run: jest tests
