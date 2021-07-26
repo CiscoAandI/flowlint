@@ -1,0 +1,9 @@
+{
+    "workflow": {
+        "properties": {
+            "target": {
+                "no_target": false
+            }
+        }
+    }
+}

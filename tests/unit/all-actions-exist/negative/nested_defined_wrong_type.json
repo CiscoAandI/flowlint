@@ -6,15 +6,21 @@
     "actions": [
         {
             "type": "workflow.atomic_workflow",
-            "name": "foo"
+            "properties": {
+                "workflow_id": "foo"
+            }
         },
         {
             "type": "other",
-            "name": "foo2",
+            "properties": {
+                "workflow_id": "foo2"
+            },
             "blocks": [
                 {
                     "type": "other",
-                    "name": "nested"
+                    "properties": {
+                        "workflow_id": "nested"
+                    }
                 }
             ]
         }

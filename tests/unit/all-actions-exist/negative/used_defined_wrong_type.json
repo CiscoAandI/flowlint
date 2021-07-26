@@ -5,11 +5,15 @@
     "actions": [
         {
             "type": "other",
-            "name": "foo"
+            "properties": {
+                "workflow_id": "foo"
+            }
         },
         {
             "type": "workflow.atomic_workflow",
-            "name": "foo2"
+            "properties": {
+                "workflow_id": "foo2"
+            }
         }
     ]
 }

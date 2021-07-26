@@ -18,13 +18,9 @@ fs.readdirSync('tests/unit', { withFileTypes: true }).filter(dirent => dirent.is
                     ruleset: ruleset
                 });
                 if(testTypeDir.name == 'negative'){
-                    // Unit tests dont need to validate the number of other errors
-                    // TODO: For integration tests, we should validate the number of errors
-                    // expect(results).toHaveLength(1);
-                    expect(results).toEqual(expect.arrayContaining([expect.objectContaining({code: testDir.name})]));
+                    expect(results[0]).toEqual(expect.arrayContaining([expect.objectContaining({code: testDir.name})]));
                 }else{
-                    expect(results).not.toEqual(expect.arrayContaining([expect.objectContaining({code: testDir.name})]));
-                    // expect(results).toHaveLength(0);
+                    expect(results[0]).not.toEqual(expect.arrayContaining([expect.objectContaining({code: testDir.name})]));
                 }
           });
         });

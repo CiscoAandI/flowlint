@@ -3,24 +3,26 @@ functions:
   - or
 rules:
   target-atomic-exists:
-    description: Not having a target is ok for an atomic action if it doesn't need to communicate with anything
+    message: "Not having a target is ok for an atomic action if it doesn't need to communicate with anything. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Target-Atomic-Exists"
     given: $.workflow.properties.target
     severity: hint
     then:
       field: no_target
       function: falsy
   target-specify-on-start:
-    description: All atomic actions should have their target set to "Specify Target On Workflow Start". This allows the atomic to be more portable since the workflow using it can specify the target.
+    message: "All atomic actions should have their target set to \"Specify Target On Workflow Start\". This allows the atomic to be more portable since the workflow using it can specify the target. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Target-Specify-On-Start"
     given: $.workflow.properties.target
     severity: error
     then:
       function: or
       functionOptions:
         properties:
-          - no_target
-          - specify_on_workflow_start
+          - field: no_target
+            function: truthy
+          - field: specify_on_workflow_start
+            function: truthy
   target-account-keys:
-    description: All atomic actions should have their account key set to "Use Target's Default Account Keys". This allows the atomic to inherit whatever account key is associated with the target provided by the parent workflow.
+    message: "All atomic actions should have their account key set to \"Use Target's Default Account Keys\". This allows the atomic to inherit whatever account key is associated with the target provided by the parent workflow. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Target-Account-Keys"
     given: $.workflow.properties
     severity: error
     then:
@@ -29,7 +31,7 @@ rules:
       - field: runtime_user.target_default
         function: truthy
   use-workflow-target:
-    description: All activities in an atomic action that use a target should be set to "Use Workflow Target"
+    message: "All activities in an atomic action that use a target should be set to \"Use Workflow Target\". See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Use-Workflow-Target"
     given: $..actions,blocks[*]
     severity: warn
     then:
