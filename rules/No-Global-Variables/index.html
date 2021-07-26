@@ -756,7 +756,7 @@
 <h2 id="description">Description</h2>
 <p>Global variables should not be used so that when the workflows are shared across SecureX tenants, errors are not encountered during the import.</p>
 <h2 id="error-message">Error Message</h2>
-<p><code>Global variables should not be used in workflows or atomic actions meant to be shared. Instead, use a "Set Variables" activity to copy global variables to local variables within the workflow. Before exporting, simply remove the global variables so the other user can select their own. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Global-Variables</code></p>
+<p><code>Global variables should not be used in workflows or atomic actions meant to be shared. Instead, use a "Set Variables" activity to copy global variables to local variables within the workflow. Before exporting, simply remove the global variables so the other user can select their own. See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Global-Variables</code></p>
 <details class="example" open="open"><summary>Rule Definition</summary><div class="highlight"><pre><span></span><code>field: variables
 function: length
 functionOptions:

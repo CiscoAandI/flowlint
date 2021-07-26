@@ -696,26 +696,26 @@
 <h2 id="installation">Installation</h2>
 <p>Flowlint is a fully dockerized linter that can be used within the docker container in various CI pipelines or locally. It was designed in pure javascript and also can therefore be run in a browser. To install flowlint, simply download the docker container as shown:</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Install Only</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>docker pull ghcr.io/ciscoaandi/flowlint:${VERSION}
+<div class="highlight"><pre><span></span><code>docker pull docker.pkg.github.com/ciscoaandi/flowlint/flowlint:${VERSION}
 </code></pre></div>
 <p>Where <code>${VERSION}</code> is the version you would like to use. See <a href="https://github.com/CiscoAandI/flowlint/pkgs/container/flowlint">Flowlint Packages</a> for a list of available Flowlint versions.</p>
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Install &amp; Run</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>docker run -it -v ${PATH_TO_WORKFLOW_JSON}:/workflow.json ghcr.io/ciscoaandi/flowlint:${VERSION} /workflow.json
+<div class="highlight"><pre><span></span><code>docker run -it -v ${PATH_TO_WORKFLOW_JSON}:/workflow.json docker.pkg.github.com/ciscoaandi/flowlint/flowlint:${VERSION} /workflow.json
 </code></pre></div>
 <p>Where <code>${VERSION}</code> is the version you would like to use. See <a href="https://github.com/CiscoAandI/flowlint/pkgs/container/flowlint">Flowlint Packages</a> for a list of available Flowlint versions.</p>
 <p>and <code>${PATH_TO_WORKFLOW_JSON}</code> is the filepath to the workflow.json file you would like to lint.</p>
 </div>
 </div>
-<details class="example" open="open"><summary>Example</summary><div class="highlight"><pre><span></span><code>docker pull ghcr.io/ciscoaandi/flowlint:1.0.0
+<details class="example" open="open"><summary>Example</summary><div class="highlight"><pre><span></span><code>docker pull docker.pkg.github.com/ciscoaandi/flowlint/flowlint:1.0.0
 </code></pre></div>
 </details>
 <h2 id="usage">Usage</h2>
 <p>To lint a workflow, simply use the following command:</p>
-<pre><code>docker run -it -v ${PATH_TO_WORKFLOW_JSON}:/workflow.json ghcr.io/ciscoaandi/flowlint:1.0.0 /workflow.json
+<pre><code>docker run -it -v ${PATH_TO_WORKFLOW_JSON}:/workflow.json docker.pkg.github.com/ciscoaandi/flowlint/flowlint:1.0.0 /workflow.json
 </code></pre>
 <p>Where <code>${PATH_TO_WORKFLOW_JSON}</code> is the filepath to the workflow.json file you would like to lint.</p>
-<details class="example" open="open"><summary>Example</summary><div class="highlight"><pre><span></span><code>docker run -it -v my_workflow.json:/workflow.json ghcr.io/ciscoaandi/flowlint:1.0.0 /workflow.json
+<details class="example" open="open"><summary>Example</summary><div class="highlight"><pre><span></span><code>docker run -it -v my_workflow.json:/workflow.json docker.pkg.github.com/ciscoaandi/flowlint/flowlint:1.0.0 /workflow.json
 </code></pre></div>
 </details>
                 
