@@ -1,4 +1,4 @@
-FROM node:14.16.1
+FROM node:14.15.0
 
 COPY package.json package.json
 RUN yarn install
