@@ -36,4 +36,4 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - run: npm install -g jest && NODE_OPTIONS=--experimental-vm-modules npx jest
+      - run: npm install jest && NODE_OPTIONS=--experimental-vm-modules npx jest
