@@ -38,7 +38,4 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build1-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - name: Run Tests
-        uses: CultureHQ/actions-yarn@master
-        with:
-          args: test
+      - run: node --experimental-vm-modules node_modules/.bin/jest
