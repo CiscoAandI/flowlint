@@ -19,8 +19,6 @@ jobs:
       - name: Install Dependencies
         if: steps.save-deps.outputs.cache-hit != 'true'
         uses: CultureHQ/actions-yarn@master
-        with:
-          args: install
   test:
     needs: setup
     runs-on: ubuntu-latest
