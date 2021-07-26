@@ -18,9 +18,9 @@ def define_env(env):
     @env.macro
     def get_yaml(rule):
         rulesets = [
-            yaml.safe_load(open("lib/rulesets/securex_ruleset.yaml")),
-            yaml.safe_load(open("lib/rulesets/workflow_ruleset.yaml")),
-            yaml.safe_load(open("lib/rulesets/atomic_action_ruleset.yaml")),
+            yaml.safe_load(open("flowlint/rulesets/securex_ruleset.yaml")),
+            yaml.safe_load(open("flowlint/rulesets/workflow_ruleset.yaml")),
+            yaml.safe_load(open("flowlint/rulesets/atomic_action_ruleset.yaml")),
         ]
         for ruleset in rulesets:
             if rule.file.name.lower() in ruleset['rules']:

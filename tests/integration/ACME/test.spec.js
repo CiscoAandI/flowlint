@@ -1,10 +1,10 @@
 const { expect } = require('@jest/globals');
-const { lint } = require('../../../lib/lint.js');
-const ruleset = '../../../lib/rulesets/securex_ruleset.yaml';
+// const { lint } = require('../../../flowlint/lint.js');
+const ruleset = '../../../flowlint/rulesets/securex_ruleset.yaml';
 const { getRuleData, loadRuleset } = require('../../../tests/integration/utils.js');
 
-const file = `${__dirname.replace('/', '')}/definition_workflow_01PLT6C492IVT09dl7dcdzSgu8NgQBuOu1Z.json`;
-
+const file = `${__dirname}/definition_workflow_01PLT6C492IVT09dl7dcdzSgu8NgQBuOu1Z.json`;
+console.log(__dirname)
 
 test("ACME Demo", async () => {
     const results = await lint({

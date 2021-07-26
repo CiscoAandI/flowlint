@@ -1,9 +1,9 @@
 const { expect } = require('@jest/globals');
-const { lint } = require('../../../lib/lint.js');
-const ruleset = '../../../lib/rulesets/securex_ruleset.yaml';
-const { getRuleData, loadRuleset } = require('../../../tests/integration/utils.js');
+const { lint } = require('../../../flowlint/lint.js');
+const ruleset = '../../../flowlint/rulesets/securex_ruleset.yaml';
+const { getRuleData, loadRuleset } = require('../utils.js');
 
-const file = `${__dirname.replace('/', '')}/definition_workflow_01NILYC8ELB2P35zuxiTzIZA63s12AUnVjL.json`;
+const file = `${__dirname}/definition_workflow_01NILYC8ELB2P35zuxiTzIZA63s12AUnVjL.json`;
 
 test("JWT Generation", async () => {
     const results = await lint({

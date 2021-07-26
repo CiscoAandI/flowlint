@@ -1,7 +1,7 @@
 const { readFileSync } = require('fs');
 const { Validator, ValidationError } = require('jsonschema');
 
-const workflowSchema = JSON.parse(readFileSync('/flowlint/specs/workflow_spec.json'));
+const workflowSchema = JSON.parse(readFileSync('./flowlint/specs/workflow_spec.json'));
 const validator = new Validator();
 
 exports.format = function(data){

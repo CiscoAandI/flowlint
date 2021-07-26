@@ -41,7 +41,7 @@ const lintCommand = {
           alias: 'r',
           description: 'path/URL to a ruleset file',
           type: 'string',
-          default: '/flowlint/rulesets/securex_ruleset.yaml'
+          default: 'flowlint/rulesets/securex_ruleset.yaml'
         },
         'fail-severity': {
           alias: 'F',

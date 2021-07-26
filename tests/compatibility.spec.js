@@ -1,7 +1,7 @@
 const rulesets = [
-    '../lib/rulesets/securex_ruleset.yaml',
-    '../lib/rulesets/workflow_ruleset.yaml',
-    '../lib/rulesets/atomic_action_ruleset.yaml',
+    'flowlint/rulesets/securex_ruleset.yaml',
+    'flowlint/rulesets/workflow_ruleset.yaml',
+    'flowlint/rulesets/atomic_action_ruleset.yaml',
 ];
 const { Spectral } = require('@stoplight/spectral');
 

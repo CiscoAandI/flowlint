@@ -1,7 +1,7 @@
 const { expect } = require('@jest/globals');
 const fs = require('fs');
-const { lint } = require('../lib/lint.js');
-const ruleset = '../lib/rulesets/securex_ruleset.yaml';
+const { lint } = require('../flowlint/lint.js');
+const ruleset = './flowlint/rulesets/securex_ruleset.yaml';
 
 fs.readdirSync('tests/unit', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).forEach((testDir) => {
   // For each unit test
@@ -13,7 +13,7 @@ fs.readdirSync('tests/unit', { withFileTypes: true }).filter(dirent => dirent.is
           // For each test file
           test(testPath.replace('.json', ''), async () => {
                 const results = await lint({
-                    documents: [`/tests/unit/${testDir.name}/${testTypeDir.name}/${testPath}`],
+                    documents: [`./tests/unit/${testDir.name}/${testTypeDir.name}/${testPath}`],
                     failSeverity: 'fail',
                     ruleset: ruleset
                 });

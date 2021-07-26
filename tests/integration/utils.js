@@ -1,6 +1,4 @@
-import { exit } from "process";
-
-const ruleset = '../../../lib/rulesets/securex_ruleset.yaml';
+const ruleset = './flowlint/rulesets/securex_ruleset.yaml';
 const { Spectral } = require('@stoplight/spectral');
 const spectral = new Spectral();
 

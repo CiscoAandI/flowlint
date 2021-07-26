@@ -36,4 +36,6 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
-      - uses: stefanoeb/jest-action@1.0.3
+      - env:
+          NODE_OPTIONS: --experimental-vm-modules
+        uses: stefanoeb/jest-action@1.0.3
