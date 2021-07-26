@@ -38,4 +38,4 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
       - env:
           NODE_OPTIONS: --experimental-vm-modules
-        uses: stefanoeb/jest-action@master
+        run: jest
