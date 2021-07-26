@@ -19,6 +19,6 @@ describe("All rules must have a description, a message, a severity, and an HTTP 
         expect(rule.severity).toBeDefined();
         expect(rule.severity).not.toBeNull();
         expect(['warn', 'error', 'info', 'hint'].includes(rule.severity)).toBeTruthy();
-        expect(rule.message.includes(`https://www.github.com/pages/CiscoAandI/flowlint/rules/`)).toBeTruthy();
+        expect(rule.message.includes(`https://CiscoAandI.github.io/flowlint/rules/`)).toBeTruthy();
     });
 });

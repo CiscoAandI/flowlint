@@ -5,7 +5,7 @@ functions:
   - and
 rules:
   execute-on-target-group:
-    message: "Workflows that are meant to be shared and require targets should use a Target Group. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Execute-On-Target-Group"
+    message: "Workflows that are meant to be shared and require targets should use a Target Group. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Execute-On-Target-Group"
     given: $.workflow.properties.target
     severity: error
     then: &use-target-group
@@ -21,7 +21,7 @@ rules:
                   field: execute_on_target_group
                   function: truthy
   use-default-target-group:
-    message: "We recommend using the \"Default TargetGroup\" since every SecureX orchestration tenant should have it by default. If you use your own target group, it will be created during workflow import. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Use-Default-Target-Group"
+    message: "We recommend using the \"Default TargetGroup\" since every SecureX orchestration tenant should have it by default. If you use your own target group, it will be created during workflow import. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Use-Default-Target-Group"
     given: $.workflow.properties.target
     severity: warn
     then:
@@ -42,7 +42,7 @@ rules:
                       # This ID is the default target group and will be the same always for all tenants.
                       match: ^target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH$
   do-not-run-on-all-targets:
-    message: "We do not recommend checking \"All Targets in this Group\" as it limits your ability to define target selection criteria. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Do-Not-Run-On-All-Targets"
+    message: "We do not recommend checking \"All Targets in this Group\" as it limits your ability to define target selection criteria. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Do-Not-Run-On-All-Targets"
     given: $.workflow.properties.target
     severity: warn
     then:
@@ -58,7 +58,7 @@ rules:
                   - field: target_group.run_on_all_targets
                     function: falsy
   choose-matching-criteria:
-    message: "This should be \"Choose first with matching critera\" unless you want the workflow to execute once for each matching target in the group. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Choose-Matching-Criteria"
+    message: "This should be \"Choose first with matching critera\" unless you want the workflow to execute once for each matching target in the group. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Choose-Matching-Criteria"
     given: $.workflow.properties.target
     severity: warn
     then:
@@ -80,7 +80,7 @@ rules:
                     functionOptions:
                       match: ^choose_first_with_matching_criteria$
   target-selection-criteria:
-    message: "This is typically \"Equals Case-Insensitive\" but other operators are fine if you're doing something specific. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Target-Selection-Criteria"
+    message: "This is typically \"Equals Case-Insensitive\" but other operators are fine if you're doing something specific. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Target-Selection-Criteria"
     given: $.workflow.properties.target
     severity: warn
     then:
@@ -106,7 +106,7 @@ rules:
                     functionOptions:
                       match: ^eqi$
   override-target-group-criteria:
-    message: "Should be \"Use Workflow Target Group\" or \"Override Workflow Target Group Criteria\". See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Override-Target-Group-Criteria"
+    message: "Should be \"Use Workflow Target Group\" or \"Override Workflow Target Group Criteria\". See here for more details: https://CiscoAandI.github.io/flowlint/rules/Override-Target-Group-Criteria"
     given: $..actions,blocks[*]
     severity: warn
     then:

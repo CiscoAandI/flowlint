@@ -2,3 +2,4 @@ yarn-error.log
 node_modules
 original_linter.js
 __pycache__
+site/

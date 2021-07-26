@@ -6,7 +6,7 @@ functions:
 rules:
   required-categories:
     description: For readability, this rule ensures that you always specify at least one category for your workflow. This makes your workflows easier to search and filter through.
-    message: "Every workflow needs at least 1 category. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Categories/"
+    message: "Every workflow needs at least 1 category. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Categories/"
     given: $
     severity: error
     then:
@@ -18,7 +18,7 @@ rules:
           min: 1
   required-workflow-key:
     description: Every workflow needs a key at the top level for defining the values in the workflow.
-    message: "Every workflow needs a high level workflow key.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Workflow-Key"
+    message: "Every workflow needs a high level workflow key.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Workflow-Key"
     given: $
     severity: error
     then:
@@ -26,7 +26,7 @@ rules:
       function: defined
   required-workflow-properties:
     description: Every workflow needs a properties key at the top level for defining the values in the workflow.
-    message: "Every workflow needs workflow properties. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Workflow-Properties"
+    message: "Every workflow needs workflow properties. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Workflow-Properties"
     given: $.workflow
     severity: error
     then:
@@ -34,7 +34,7 @@ rules:
       function: defined
   required-target: 
     description: Every workflow needs a target key at the top level for defining the targets for the workflow.
-    message: "Every workflow needs a target  This should tie to other linted rules.See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Target"
+    message: "Every workflow needs a target  This should tie to other linted rules.See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Target"
     given: $.workflow.properties
     severity: error
     then:
@@ -42,7 +42,7 @@ rules:
       function: defined
   required-description:
     description: A description is required for every workflow so that it can be easily understood as workflows are stored in git and move around and are shared.
-    message: "Every workflow needs a description of length at least 10. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Description"
+    message: "Every workflow needs a description of length at least 10. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Description"
     given: $.workflow.properties
     severity: error
     then:
@@ -54,7 +54,7 @@ rules:
           min: 10
   cleanup-workflow:
     description: Be careful when you select this "Clean up after successful execution" as it will delete the action's logs and they cannot be used to debug your workflow.
-    message: "If you check \"Clean up after successful execution\", your workflow or atomic action's instances will be deleted if they're successful. This means you won't be able to view them for debugging purposes. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Cleanup-Workflow"
+    message: "If you check \"Clean up after successful execution\", your workflow or atomic action's instances will be deleted if they're successful. This means you won't be able to view them for debugging purposes. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Cleanup-Workflow"
     given: $.workflow.properties
     severity: hint
     then:
@@ -62,7 +62,7 @@ rules:
       function: falsy
   no-global-variables:
     description: Global variables should not be used so that when the workflows are shared across SecureX tenants, errors are not encountered during the import.
-    message: "Global variables should not be used in workflows or atomic actions meant to be shared. Instead, use a \"Set Variables\" activity to copy global variables to local variables within the workflow. Before exporting, simply remove the global variables so the other user can select their own. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Global-Variables"
+    message: "Global variables should not be used in workflows or atomic actions meant to be shared. Instead, use a \"Set Variables\" activity to copy global variables to local variables within the workflow. Before exporting, simply remove the global variables so the other user can select their own. See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Global-Variables"
     given: $
     severity: error
     then:
@@ -71,7 +71,7 @@ rules:
       functionOptions:
         max: 0
   no-table-types:
-    message: "We do not recommend using tables to pass data between objects as they're inefficient and don't always scale well. It's better to exchange JSON instead.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Table-Types"
+    message: "We do not recommend using tables to pass data between objects as they're inefficient and don't always scale well. It's better to exchange JSON instead.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Table-Types"
     given: $
     severity: error
     then:
@@ -80,7 +80,7 @@ rules:
       functionOptions:
         max: 0
   secure-strings-have-default-values:
-    message: "If a Secure String variable has a value when exported, it will prompt the user for its value during import. If you want to avoid this, clear the Secure String's value before exporting the workflow.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Secure-Strings-Have-Default-Values"
+    message: "If a Secure String variable has a value when exported, it will prompt the user for its value during import. If you want to avoid this, clear the Secure String's value before exporting the workflow.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/Secure-Strings-Have-Default-Values"
     given: $.workflow.variables[?(@.properties.type == "datatype.secure_string")]
     severity: warn
     then:
@@ -89,7 +89,7 @@ rules:
       functionOptions:
         min: 1
   required-variable-description:
-    message: "Every workflow variable needs a description of length at least 10. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Required-Variable-Description"
+    message: "Every workflow variable needs a description of length at least 10. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Required-Variable-Description"
     given: $.workflow.variables[*]
     severity: warn
     then:
@@ -100,7 +100,7 @@ rules:
         functionOptions:
           min: 10
   no-hardcoded-targets:
-    message: "Workflows should not have any hard-coded targets.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Hardcoded-Workflows"
+    message: "Workflows should not have any hard-coded targets.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Hardcoded-Workflows"
     given: $
     severity: error
     then:
@@ -109,7 +109,7 @@ rules:
       functionOptions:
         max: 0
   no-hardcoded-account-keys:
-    message: "No account keys should be hardcoded in the workflow.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Hardcoded-Account-Keys"
+    message: "No account keys should be hardcoded in the workflow.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Hardcoded-Account-Keys"
     given: $
     severity: error
     then:
@@ -118,7 +118,7 @@ rules:
       functionOptions:
         max: 0
   no-manual-targets-in-target-group:
-    message: "In the target group configuration, you probably added a specific target manually. We don't recommend doing this unless you have a specific use case and suggest you consider using target group criteria instead.  See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Manual-Targets-In-Target-Group"
+    message: "In the target group configuration, you probably added a specific target manually. We don't recommend doing this unless you have a specific use case and suggest you consider using target group criteria instead.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Manual-Targets-In-Target-Group"
     given: $.target_groups[*].targets[*]
     severity: warn
     then:
@@ -127,7 +127,7 @@ rules:
       functionOptions:
         max: 0
   non-standard-target-types:
-    message: "By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Non-Standard-Target-Types"
+    message: "By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Non-Standard-Target-Types"
     given: $.target_groups.target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH.targets[*]
     severity: warn
     then:
@@ -138,7 +138,7 @@ rules:
           - web-service.endpoint
           - email.smtp_endpoint
   no-custom-calenders:
-    message: "By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Custom-Calenders"
+    message: "By default, the Default TargetGroup doesn't contain target types besides HTTP Endpoint and SMTP Endpoint. If you need additional target types for your workflow, the end user may need to add them to the target group configuration before running the workflow. See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Custom-Calenders"
     given: $.calenders[*]
     severity: warn
     then:
@@ -168,7 +168,7 @@ rules:
           - calendar_group_1BMfN3vifXosz1cwBFXN6N7yQge
           - calendar_group_1BMfN6Cjp6x5yy0NdCh9PJC9KGo
   no-subworkflows:
-    message: "We do not recommend using subworkflows as they complicate the import/export process. You may want to consider using some atomic actions instead depending on what your subworkflow does. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Subworkflows"
+    message: "We do not recommend using subworkflows as they complicate the import/export process. You may want to consider using some atomic actions instead depending on what your subworkflow does. See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Subworkflows"
     given: $..actions,blocks[*]
     severity: warn
     then:
@@ -177,35 +177,35 @@ rules:
       functionOptions:
         notMatch: ^workflow\.sub_workflow$
   no-activities-skipped:
-    message: "Skipping execution for an activity means the activity will not run at all. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/No-Activities-Skipped"
+    message: "Skipping execution for an activity means the activity will not run at all. See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Activities-Skipped"
     given: $..actions,blocks[*]
     severity: info
     then:
       field: properties.skip_execution
       function: falsy
   http-continue-on-failure:
-    message: "In most cases, you probably want \"Continue on HTTP error status code\" instead. If you're using this option intentionally, make sure you're using a Condition Block to handle failures. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Http-Continue-On-Failure"
+    message: "In most cases, you probably want \"Continue on HTTP error status code\" instead. If you're using this option intentionally, make sure you're using a Condition Block to handle failures. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Http-Continue-On-Failure"
     given: $..actions,blocks[?(@.type == "web-service.http_request")]
     severity: info
     then:
       field: properties.continue_on_failure
       function: falsy
   http-continue-on-error-status-code:
-    message: "You should check this and use a Condition Block to handle HTTP error codes. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Http-Continue-On-Error-Status-Code"
+    message: "You should check this and use a Condition Block to handle HTTP error codes. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Http-Continue-On-Error-Status-Code"
     given: $..actions,blocks[?(@.type == "web-service.http_request")]
     severity: warn
     then:
       field: properties.continue_on_error_status_code
       function: falsy
   jsonpath-continue-on-failure:
-    message: "If the JSON path query you look for isn't found, the activity will fail and your workflow will fail with it. If you want to avoid this, you can check continue on failure and use a Condition Block to check if the path query was successful. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Jsonpath-Continue-On-Failure"
+    message: "If the JSON path query you look for isn't found, the activity will fail and your workflow will fail with it. If you want to avoid this, you can check continue on failure and use a Condition Block to check if the path query was successful. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Jsonpath-Continue-On-Failure"
     given: $..actions,blocks[?(@.type == "corejava.jsonpathquery")]
     severity: warn
     then:
       field: properties.continue_on_failure
       function: truthy
   dont-override-account-keys:
-    message: "Most activities should have their account key set to \"Use Target's Default Account Keys.\" It's uncommon that a target's account keys should be overriden. See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/Dont-Override-Account-Keys"
+    message: "Most activities should have their account key set to \"Use Target's Default Account Keys.\" It's uncommon that a target's account keys should be overriden. See here for more details: https://CiscoAandI.github.io/flowlint/rules/Dont-Override-Account-Keys"
     given: $..actions,blocks[*]
     severity: warn
     then:
@@ -217,7 +217,7 @@ rules:
           - field: properties.runtime_user.target_default
             function: truthy
   all-actions-exist:
-    message: "Action with name '${i}' was not found in action definitions for this workflow. Are you sure it exists? See here for more details: https://www.github.com/pages/CiscoAandI/flowlint/rules/All-Atomics-Exist"
+    message: "Action with name '${i}' was not found in action definitions for this workflow. Are you sure it exists? See here for more details: https://CiscoAandI.github.io/flowlint/rules/All-Atomics-Exist"
     given: $
     severity: error
     then:
