@@ -1,0 +1,56 @@
+{% set raw = get_yaml(page) %}
+
+{% set arguments = arguments or [] %}
+# {{ page.title }}
+{% block main %}
+{{ get_severity(page.title, raw.severity) }}
+
+## Description
+{{ raw.description or "This rule has no available description" }}
+
+## Error Message
+`{{ raw.message }}`
+
+???+ Example "Rule Definition"
+    ```
+    {{ pretty(raw.then) }}
+    ```
+{% endblock %}
+
+{#
+## Arguments
+{% if arguments %}
+{% block arguments %}
+| Name | Type | Description |
+|------|------|-------------|
+{%- for name in arguments %}
+| {{ name }} | {{ arg_type_with_tooltip(arguments[name].type) }} | 1 |
+{% endfor %}
+{% endblock %}
+{% else %}
+This function takes no arguments.
+{% endif %}
+
+## Required Configuration
+{% if required_configuration %}
+{% block configuration %}
+| Path | Description {{ "&nbsp;" * 100 }} | Example {{ "&nbsp;" * 100 }} | Type |
+|------|------|-------------|---------|
+{%- for variable in required_configuration %}
+| {{ variable.path }} | {{ variable.description }} | {{ variable.example }} | {{ variable.type }}
+{%- endfor %}
+{% endblock %}
+{% else %}
+This function has no required configuration.
+{% endif %}
+
+## Examples
+{% block examples %}
+{%- for example in get_list_of_examples("rules/{}".format(page.title)) %}
+=== "{{ example.name }} "
+{{ make_tooltip_link("<font color=\"green\">:material-check:</font>", "/testing", "Tested")}}
+``` yaml
+{{ example.example }}
+```
+{% endfor %}
+{% endblock %}#}
