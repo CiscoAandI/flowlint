@@ -14,4 +14,4 @@ lint:
 
 .PHONY: test $(tag) $(test)
 test:
-	node --experimental-vm-modules node_modules/jest/bin/jest.js $(test)
+	docker run -it -v ${PWD}/tests:/tests -v ${PWD}/flowlint:/flowlint -e NODE_OPTIONS="--experimental-vm-modules" --entrypoint node ghcr.io/ciscoaandi/flowlint:$(tag) node_modules/jest/bin/jest.js $(test)

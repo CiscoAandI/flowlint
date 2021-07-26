@@ -34,27 +34,22 @@ exports.lint = function(args) {
       ruleset,
       ...config
     } = args;
-    console.log(ruleset);
-    console.log(fs.existsSync(ruleset))
     return spectral.loadRuleset(ruleset).then(() => {
-      console.log
-      return [];
-
+      // If it's a single file, don't apply a glob. If it's not a single file, apply a recursive search glob.
+      documents[0] = fs.lstatSync(documents[0]).isDirectory() ? `${documents[0]}/**/*.json` : documents[0]
+      const files = glob.sync(documents[0]);
+      const results = [];
+      files.forEach(filename => {
+        // files is an array of filenames.
+        const workflow = JSON.parse(fs.readFileSync(filename));
+        results.push(spectral.run(workflow)).then((single_results) => {
+          single_results = single_results.map(i => ({...i, source: filename}));
+          if(single_results.length > 0){
+            process.exitCode = severeEnoughToFail(single_results, failSeverity) ? 1 : 0;
+          }
+          return single_results;
+        });
+      })
+      return Promise.all(results);
     });
-    // If it's a single file, don't apply a glob. If it's not a single file, apply a recursive search glob.
-    documents[0] = fs.lstatSync(documents[0]).isDirectory() ? `${documents[0]}/**/*.json` : documents[0]
-    const files = glob.sync(documents[0]);
-    const results = [];
-    files.forEach(filename => {
-      // files is an array of filenames.
-      const workflow = JSON.parse(fs.readFileSync(filename));
-      results.push(spectral.run(workflow)).then((single_results) => {
-        single_results = single_results.map(i => ({...i, source: filename}));
-        if(single_results.length > 0){
-          process.exitCode = severeEnoughToFail(single_results, failSeverity) ? 1 : 0;
-        }
-        return single_results;
-      });
-    })
-    return Promise.all(results);
 }
