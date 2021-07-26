@@ -2,7 +2,7 @@
   "name": "flowlint",
   "version": "1.0.0",
   "description": "SecureX Workflow Linter",
-  "main": "flowlint/index.js",
+  "main": "index.js",
   "repository": "https://github.com/CiscoAandI/flowlint.git",
   "author": "Ava Thorn <avthorn@cisco.com>",
   "license": "MIT",
