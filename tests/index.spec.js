@@ -1,7 +1,7 @@
 const { expect } = require('@jest/globals');
 const fs = require('fs');
 const { lint } = require('../flowlint/lint.js');
-const ruleset = './flowlint/rulesets/securex_ruleset.yaml';
+const ruleset = `${__dirname}/../flowlint/rulesets/securex_ruleset.yaml`;
 
 fs.readdirSync('tests/unit', { withFileTypes: true }).filter(dirent => dirent.isDirectory()).forEach((testDir) => {
   // For each unit test

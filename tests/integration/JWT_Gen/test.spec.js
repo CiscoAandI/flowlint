@@ -1,6 +1,6 @@
 const { expect } = require('@jest/globals');
 const { lint } = require('../../../flowlint/lint.js');
-const ruleset = '../../../flowlint/rulesets/securex_ruleset.yaml';
+const ruleset = `${__dirname}/../../../flowlint/rulesets/securex_ruleset.yaml`;
 const { getRuleData, loadRuleset } = require('../utils.js');
 
 const file = `${__dirname}/definition_workflow_01NILYC8ELB2P35zuxiTzIZA63s12AUnVjL.json`;
