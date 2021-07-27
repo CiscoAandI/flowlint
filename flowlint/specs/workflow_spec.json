@@ -3455,7 +3455,8 @@
                         "datatype.number",
                         "datatype.table",
                         "datatype.boolean",
-                        "datatype.secure_string"
+                        "datatype.secure_string",
+                        "datatype.integer"
                     ],
                     "x-go-name": "Type"
                 },
