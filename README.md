@@ -15,4 +15,4 @@ For example:
 
 # Documentation
 
-See our [Documentation Server](https://github.com/pages/CiscoAandI/flowlint) for more information.
+See our [Documentation Server](https://ciscoaandi.github.io/flowlint) for more information.
