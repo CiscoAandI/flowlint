@@ -1,7 +1,7 @@
 # Default arguments
 tag=latest
 test=tests
-ruleset=/flowlint/rulesets/securex_ruleset
+ruleset=/flowlint/rulesets/securex_ruleset.yaml
 
 .PHONY: build $(tag)
 build:
