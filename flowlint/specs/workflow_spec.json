@@ -2623,8 +2623,7 @@
                 "columns": {
                     "items": {
                         "additionalProperties": {
-                            "properties": {},
-                            "type": "object"
+                            "$ref": "#/definitions/SPYGLASS_CORRECTION_SPEC"
                         },
                         "type": "object"
                     },
