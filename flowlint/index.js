@@ -56,7 +56,7 @@ const lintCommand = {
   // console.log(lint(args))
     lint(args).then(results => results.forEach(result => writeOutput(pretty(result, {failSeverity: getDiagnosticSeverity(args.failSeverity)}))))
 };
-
+process.stdout.columns = 200
 yargs
   .scriptName('spectral')
   .parserConfiguration({
