@@ -45,7 +45,7 @@ exports.lint = function(args) {
         results.push(spectral.run(workflow).then((single_results) => {
           single_results = single_results.map(i => ({...i, source: filename}));
           if(single_results.length > 0){
-            process.exitCode = severeEnoughToFail(single_results, failSeverity) ? 1 : 0;
+            process.exitCode = severeEnoughToFail(single_results, failSeverity) ? 1 : process.exitCode !== 0 ? process.exitCode : 0;
           }
           return single_results;
         }));
