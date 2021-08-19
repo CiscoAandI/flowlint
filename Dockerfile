@@ -1,4 +1,4 @@
-FROM node:16.5.0
+FROM node:16.7.0
 
 COPY package.json package.json
 RUN yarn install
