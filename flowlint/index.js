@@ -2,7 +2,24 @@ const yargs = require('yargs');
 const { getDiagnosticSeverity } = require('@stoplight/spectral/dist/ruleset/severity.js');
 const { writeOutput } = require('@stoplight/spectral/dist/cli/services/output.js');
 const { pretty } = require('@stoplight/spectral/dist/cli/formatters/pretty.js');
+const { json } = require('@stoplight/spectral/dist/cli/formatters/json.js');
 const { lint } = require('./lint.js');
+
+const jsonFormatter = (...args) => {
+  let output = json(...args);
+  for(let issue of JSON.parse(output)){
+    // Add the json path on here so that it's included in the annotation
+    // %0A is for multiline annotations, see here: https://github.com/actions/toolkit/issues/319#issuecomment-678421542
+    let message = `Path: ${issue.path}%0A%0A${issue.message}`
+    let severity = issue.severity > 0 ? 'warning' : 'error';
+
+
+    // This is a magic line to turn the error into a github annotation with the problem matcher
+    // Use the start line since annotations aren't multi-line
+    console.log(`::error fromPath=${issue.source},line=${issue.range.start.line},column=${issue.range.start.character},severity=${severity},code=${issue.code}::${message}`) 
+  }
+  return "";
+}
 
 const lintCommand = {
   describe: 'lint JSON/YAML documents from files or URLs',
@@ -51,10 +68,8 @@ const lintCommand = {
           type: 'string',
         }
       }),
-
   handler: args => 
-  // console.log(lint(args))
-    lint(args).then(results => results.forEach(result => writeOutput(pretty(result, {failSeverity: getDiagnosticSeverity(args.failSeverity)}))))
+    lint(args).then(results => results.forEach(result => writeOutput((process.env.SPECTRAL_JSON ? jsonFormatter : pretty)(result, {failSeverity: getDiagnosticSeverity(args.failSeverity)}))))
 };
 process.stdout.columns = 200
 yargs
