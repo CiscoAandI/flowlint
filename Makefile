@@ -7,11 +7,11 @@ ruleset=/flowlint/rulesets/securex_ruleset.yaml
 build:
 	docker build -t docker.pkg.github.com/ciscoaandi/flowlint/flowlint:$(tag) .
 
-.PHONY: lint $(tag) $(ruleset) $(workflow)
+.PHONY: lint $(tag) $(ruleset) $(workflow) $(JSON)
 lint:
 	${MAKE} build
 
-	docker run -it -v ${PWD}/$(workflow):/workflows docker.pkg.github.com/ciscoaandi/flowlint/flowlint:$(tag) -r $(ruleset) /workflows
+	docker run -it -e SPECTRAL_JSON="${JSON}" -v ${PWD}/$(workflow):/$(workflow) docker.pkg.github.com/ciscoaandi/flowlint/flowlint:$(tag) -r $(ruleset) $(workflow)
 
 .PHONY: test $(tag) $(test)
 test:
