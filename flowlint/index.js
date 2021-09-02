@@ -4,20 +4,30 @@ const { writeOutput } = require('@stoplight/spectral/dist/cli/services/output.js
 const { pretty } = require('@stoplight/spectral/dist/cli/formatters/pretty.js');
 const { json } = require('@stoplight/spectral/dist/cli/formatters/json.js');
 const { lint } = require('./lint.js');
+const fs = require("fs");
 
 const jsonFormatter = (...args) => {
   let output = json(...args);
+  // if file exists, if so add to it
+  let results = [];
+  try{
+    results = JSON.parse(fs.readFileSync(".flowlint.json"));
+  }catch (err){}
+
   for(let issue of JSON.parse(output)){
-    // Add the json path on here so that it's included in the annotation
-    // %0A is for multiline annotations, see here: https://github.com/actions/toolkit/issues/319#issuecomment-678421542
-    let message = `Path: ${issue.path}%0A%0A${issue.message}`
-    let severity = issue.severity > 0 ? 'warning' : 'error';
-
-
-    // This is a magic line to turn the error into a github annotation with the problem matcher
-    // Use the start line since annotations aren't multi-line
-    console.log(`::error fromPath=${issue.source},line=${issue.range.start.line},column=${issue.range.start.character},severity=${severity},code=${issue.code}::${message}`) 
+    results.push({
+      file: issue.source,
+      start_line: issue.range.start.line,
+      start_column: issue.range.start.column,
+      end_line: issue.range.end.line,
+      end_column: issue.range.end.column,
+      title: issue.code,
+      message: `Path ${issue.path}\n\n${issue.message}`,
+      annotation_level: issue.severity == 0 ? "error" : issue.severity == 1 ? "warning" : "notice"
+    });
   }
+
+  fs.writeFileSync('.flowlint.json', JSON.stringify(results))
   return "";
 }
 

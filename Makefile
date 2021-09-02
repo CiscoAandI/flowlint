@@ -11,7 +11,7 @@ build:
 lint:
 	${MAKE} build
 
-	docker run -it -e SPECTRAL_JSON="${JSON}" -v ${PWD}/$(workflow):/$(workflow) docker.pkg.github.com/ciscoaandi/flowlint/flowlint:$(tag) -r $(ruleset) $(workflow)
+	docker run -it -e SPECTRAL_JSON="${JSON}" -v ${PWD}/.flowlint.json:/.flowlint.json -v ${PWD}/$(workflow):/$(workflow) docker.pkg.github.com/ciscoaandi/flowlint/flowlint:$(tag) -r $(ruleset) $(workflow)
 
 .PHONY: test $(tag) $(test)
 test:
