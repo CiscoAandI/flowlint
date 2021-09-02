@@ -18,9 +18,9 @@ const jsonFormatter = (...args) => {
     results.push({
       file: issue.source,
       start_line: issue.range.start.line,
-      start_column: issue.range.start.column,
+      start_column: issue.range.start.character,
       end_line: issue.range.end.line,
-      end_column: issue.range.end.column,
+      end_column: issue.range.end.character,
       title: issue.code,
       message: `Path ${issue.path}\n\n${issue.message}`,
       annotation_level: issue.severity == 0 ? "error" : issue.severity == 1 ? "warning" : "notice"
