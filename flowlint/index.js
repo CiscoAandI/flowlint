@@ -16,10 +16,11 @@ const jsonFormatter = (...args) => {
 
   for(let issue of JSON.parse(output)){
     results.push({
-      path: issue.source,
-      start_line: issue.range.start.line,
+      file: issue.source,
+      line: issue.range.start.line,
+      // start_line: issue.range.start.line,
       start_column: issue.range.start.character,
-      end_line: issue.range.end.line,
+      // end_line: issue.range.end.line,
       end_column: issue.range.end.character,
       title: issue.code,
       message: `Path ${issue.path}\n\n${issue.message}`,
