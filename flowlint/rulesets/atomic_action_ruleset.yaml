@@ -38,7 +38,7 @@ rules:
       function: or
       functionOptions:
         properties:
-          - field: target
+          - field: properties.target
             function: falsy
           - field: properties.target.use_workflow_target
             function: truthy
