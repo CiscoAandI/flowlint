@@ -73,7 +73,7 @@ rules:
   no-table-types:
     message: "We do not recommend using tables to pass data between objects as they're inefficient and don't always scale well. It's better to exchange JSON instead.  See here for more details: https://CiscoAandI.github.io/flowlint/rules/No-Table-Types"
     given: $
-    severity: error
+    severity: hint
     then:
       field: table_types
       function: length
