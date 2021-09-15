@@ -35,5 +35,10 @@ rules:
     given: $..actions,blocks[*]
     severity: warn
     then:
-      field: properties.target.use_workflow_target
-      function: truthy
+      function: or
+      functionOptions:
+        properties:
+          - field: properties.target
+            function: falsy
+          - field: properties.target.use_workflow_target
+            function: truthy
