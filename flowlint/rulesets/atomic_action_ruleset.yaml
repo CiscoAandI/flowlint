@@ -26,10 +26,18 @@ rules:
     given: $.workflow.properties
     severity: error
     then:
-      - field: runtime_user
-        function: defined
-      - field: runtime_user.target_default
-        function: truthy
+      - function: or
+        functionOptions:
+          properties:
+            - field: target.no_target
+              function: truthy
+            - function: and
+              functionOptions:
+                properties:
+                  - field: runtime_user
+                    function: defined
+                  - field: runtime_user.target_default
+                    function: truthy
   use-workflow-target:
     message: "All activities in an atomic action that use a target should be set to \"Use Workflow Target\". See here for more details: https://CiscoAandI.github.io/flowlint/rules/Use-Workflow-Target"
     given: $..actions,blocks[*]
