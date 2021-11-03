@@ -2,7 +2,7 @@
 
 # Flowlint
 
-Flowlint is a [Cisco SecureX Orchestrator](https://securex.cisco.com) workflow linter for secureX workflows, atomic actions, and subworkflows. It contains several best practices for linting workflows based on a set of common-sense and learned rules.
+Flowlint is a [Cisco SecureX Orchestrator](https://security.cisco.com/) workflow linter for secureX workflows, atomic actions, and subworkflows. It contains several best practices for linting workflows based on a set of common-sense and learned rules.
 
 # Example
 ![Lint Example](docs/images/example_lint_output.png)
