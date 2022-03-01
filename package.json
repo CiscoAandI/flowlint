@@ -18,7 +18,7 @@
   "dependencies": {
     "@stoplight/spectral": "6.0.0-alpha3",
     "jsonschema": "^1.4.0",
-    "node": "^16.9.1"
+    "node": "^17.5.0"
   },
   "jest": {
     "testMatch": [
